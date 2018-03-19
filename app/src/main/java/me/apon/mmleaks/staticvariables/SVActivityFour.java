@@ -21,6 +21,14 @@ public class SVActivityFour extends AppCompatActivity {
         TextView textView = (TextView) findViewById(R.id.text);
         textView.setText("Singleton类的静态变量instantiation间接持有SVActivityFour实例导致内存泄漏");
         /////////////////////////////////////////////////////////////////////
+        //修复方法1：用getApplicationContext()代替this
         singleton = Singleton.getInstance(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //修复方法2：在onDestroy做清理工作
+        singleton.release(this);
     }
 }

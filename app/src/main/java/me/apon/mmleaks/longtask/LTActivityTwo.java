@@ -19,13 +19,14 @@ import me.apon.mmleaks.R;
 
 public class LTActivityTwo extends AppCompatActivity {
 
-    private final Handler mLeakyHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            Log.e("LTActivityTwo", "handle message");
-        }
-    };
+//    private final Handler mLeakyHandler = new Handler() {
+//        @Override
+//        public void handleMessage(Message msg) {
+//            Log.e("LTActivityTwo", "handle message");
+//        }
+//    };
 
+    private final Handler mLeakyHandler = new MyHandler();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,5 +35,12 @@ public class LTActivityTwo extends AppCompatActivity {
         textView.setText("匿名内部类引用导致内存泄漏");
         ////////////////////////
         mLeakyHandler.sendEmptyMessageDelayed(0,1000*60*10);
+    }
+    //使用静态内部类代替匿名内部类
+    private static class MyHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            Log.e("FRANK", "handle message");
+        }
     }
 }

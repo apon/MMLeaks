@@ -16,7 +16,7 @@ import me.apon.mmleaks.R;
  */
 
 public class LTActivityFour extends AppCompatActivity {
-
+    private  MyTask myTask = null;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,13 +24,24 @@ public class LTActivityFour extends AppCompatActivity {
         TextView textView = (TextView) findViewById(R.id.text);
         textView.setText("长时间运行的AsyncTask持有LTActivityThree实例的引用导致内存泄漏");
         ////////////////////////
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... params) {
-                while (true) {
-                    SystemClock.sleep(1000);
-                }
+//        new AsyncTask<Void, Void, Void>() {
+//            @Override
+//            protected Void doInBackground(Void... params) {
+//                while (true) {
+//                    SystemClock.sleep(1000);
+//                }
+//            }
+//        }.execute();
+        myTask = new MyTask();
+        myTask.execute();
+    }
+    //替换成静态内部类
+    private static class MyTask extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... params) {
+            while (true) {
+                SystemClock.sleep(1000);
             }
-        }.execute();
+        }
     }
 }

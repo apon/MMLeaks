@@ -11,7 +11,9 @@ import android.widget.TextView;
  */
 
 public class SVActivityTwo extends AppCompatActivity {
-    static TextView textView;
+    //删除static
+    //static TextView textView;
+    TextView textView;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

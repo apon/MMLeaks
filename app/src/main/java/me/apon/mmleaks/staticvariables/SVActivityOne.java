@@ -14,8 +14,9 @@ import me.apon.mmleaks.R;
  */
 
 public class SVActivityOne extends AppCompatActivity {
-
-    static Activity activity;
+    //删除static
+    //static Activity activity;
+    Activity activity;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

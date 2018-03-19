@@ -16,6 +16,7 @@ import me.apon.mmleaks.R;
 
 public class LTActivityThree extends AppCompatActivity {
     private final Handler mLeakyHandler = new Handler();
+    private final MyRunnable myRunnable = new MyRunnable();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,11 +24,19 @@ public class LTActivityThree extends AppCompatActivity {
         TextView textView = (TextView) findViewById(R.id.text);
         textView.setText("匿名内部类引用导致内存泄漏");
         ////////////////////////
-        mLeakyHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Log.e("LTActivityTwo", "in run()");
-            }
-        }, 1000 * 60 * 10);
+//        mLeakyHandler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                Log.e("LTActivityTwo", "in run()");
+//            }
+//        }, 1000 * 60 * 10);
+        mLeakyHandler.postDelayed(myRunnable, 1000 * 60 * 10);
+    }
+    //替换成静态内部类
+    private static class MyRunnable implements Runnable {
+        @Override
+        public void run() {
+            Log.e("FRANK", "in run()");
+        }
     }
 }

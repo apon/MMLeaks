@@ -14,8 +14,9 @@ import me.apon.mmleaks.R;
  */
 
 public class SVActivityThree extends AppCompatActivity {
-
-    static InnerClass innerClass;
+    //删除static
+    //static InnerClass innerClass;
+    InnerClass innerClass;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

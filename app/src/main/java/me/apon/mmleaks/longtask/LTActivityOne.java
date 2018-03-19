@@ -25,8 +25,8 @@ public class LTActivityOne extends AppCompatActivity {
         ////////////////////////
         new MyThread().start();
     }
-
-    private class MyThread extends Thread {
+    //设置成静态内部类，
+    private static class MyThread extends Thread {
         @Override
         public void run() {
             while (true) {
